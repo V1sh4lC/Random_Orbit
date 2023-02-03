@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {margin: 0;padding: 0; background-color: black;}
+        .container {
+            min-height: 100vh;
+            min-width: 100vw;
+            /* border: 5px solid red; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: color 800ms forwards;
+        }
+
+        @keyframes color {
+            from {background-color: black;}
+            to {background-color: rgb(46, 46, 46);}
+        }
+
+        .box {
+            /* border: 1px solid white; */
+            background-color: rgb(66, 66, 66);
+            border-radius: 15px;
+            width: 70%;
+            max-height: 550px;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0px 5px 10px rgba(3, 3, 3, 0.5);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <video src="bh.mp4" width="90%" autoplay controls></video>
+        </div>
+    </div>
+</body>
+</html>

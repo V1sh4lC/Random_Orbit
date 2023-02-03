@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {--center: calc(50% - 50px);}
+        body {margin: 0;padding: 0;background-color: #000; overflow:hidden;}
+
+        .container {
+            margin: 0;padding: 0;
+            /* border: 1px solid red; */
+            min-height: 99vh;
+        }
+
+        .sun {
+            height: 100px;
+            width: 100px;
+            background-color: yellow;
+            box-shadow: 0 0 130px rgba(255, 255, 0, 0.3);
+            border-radius: 50%;
+            position: absolute;
+            top: var(--center);
+            left: var(--center);
+            z-index: 1;
+            transition: 500ms;
+            /* border: 1px solid white; */
+        }
+
+        
+
+        .arc {
+            /* background-color: rgb(10, 157, 255); */
+            border-width: 2px;
+            border-style: solid;
+            border-radius: 50%;
+            /* border-image: radial-gradient(rgb(0, 90, 255), rgb(73, 182, 255)) 50%; */
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: calc(var(--center) - 50px);
+            left: calc(var(--center) - 50px);
+            border-color: rgb(5, 104, 233) transparent transparent transparent;
+            /* border-image: linear-gradient(red, purple); */
+            animation: anim 10s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes anim {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+
+        .moon {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgb(0, 43, 184);
+            position: absolute;
+            top: 21px;
+            left: 165px;
+        }
+
+        .stars {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background-color: #fff;
+            border-radius: 50%;
+            margin-top: 0;
+            margin-left: 0;
+            z-index: -1;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .none {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="head">
+        <div id="stars-box">
+            <!-- stars here -->
+        </div>
+        <div class="sun" id="sunClick"></div>
+        <div class="arc">
+            <div class="moon"></div>
+        </div>
+        <div class="earth"></div>
+    </div>
+    <div class="endScreen">
+
+    </div>
+
+    <script>
+        let p = document.getElementById("demo");
+        let s = document.getElementById("strs");
+        let sb = document.getElementById("stars-box");
+        let sun = document.getElementById("sunClick");
+        let container = document.getElementById("head");
+        let count = 50;
+
+        let html = ``;
+
+        for (let i=0; i<count; i++) {
+            html += `<div class="stars" id="strs${i}"></div>`;
+        }
+
+        sb.innerHTML = html;
+
+        for (let i=0; i<count; i++) {
+            let s = document.getElementById(`strs${i}`);
+            let x = Math.random();
+            let y = Math.random();
+            s.style.marginTop = Math.floor(x * window.innerHeight) + "px";
+            s.style.marginLeft = Math.floor(y * window.innerWidth) + "px";
+        }
+
+        sun.addEventListener("click", expand);
+
+        function expand() {
+            sun.style.width = "100%";
+            sun.style.height = "100%";
+            sun.style.borderRadius = "0px";
+            sun.style.backgroundColor = "black";
+            sun.style.boxShadow = "none";
+            sun.style.top = 0;
+            sun.style.left = 0;
+            let intr = setTimeout(() => {
+                container.classList.add("none");
+                location.replace("black_hole.html");
+            }, 1000);
+        }
+        // p.innerHTML = window.innerHeight + "<br>" + window.innerWidth;
+        
+    </script>
+</body>
+</html>
